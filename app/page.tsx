@@ -1,3 +1,6 @@
+"use client";
+
+import { Suspense } from "react";
 import { HeroSection } from "@/components/hero-section"
 import { ServicesSection } from "@/components/services-section"
 import AboutSection from "@/components/about-section"
@@ -6,7 +9,7 @@ import TeamSection from "@/components/team-section"
 import { ScrollToSection } from "@/components/scroll-to-section"
 import { TrustedBySection } from "@/components/trusted-by-section"
 
-export default function Home() {
+function HomeContent() {
   return (
     <div className="home-page">
       <ScrollToSection />
@@ -30,6 +33,13 @@ export default function Home() {
 
       <TeamSection />
     </div>
-  )
+  );
 }
 
+export default function Home() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <HomeContent />
+    </Suspense>
+  );
+}
